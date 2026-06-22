@@ -1,0 +1,211 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    font-family:Arial, Helvetica, sans-serif;
+    
+    background-image:
+        linear-gradient(
+            rgba(154, 204, 180, 0.418),
+            rgba(68, 83, 76, 0.6)
+        ),
+        url("images/better_background.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.pokemon-search {
+    background: hsla(154, 26%, 81%, 0.85);
+    border-radius: 12px;
+    padding: 25px;
+    backdrop-filter: blur(8px);
+}
+main{
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    
+}
+/*"Rainbow gradient text effect (we don't like boring text)"*/
+header h1{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 4rem;
+    background: linear-gradient(90deg,
+     #84d6b4, 
+     #4fb49b,
+     #0a5c41,
+     #54857d,
+     #0bbe89,
+     #478671,
+     #1e885f);
+     /* Makes the gradient appear inside the text */
+    -webkit-background-clip: text;
+    /* Makes the text transparent so the gradient shows through */
+    -webkit-text-fill-color: transparent;
+    /* Adds a black stroke around the text for better visibility */
+    -webkit-text-stroke: 2px #000000;
+    text-shadow: 0 0 12px rgba(21, 36, 31, 0.5);
+}
+
+#status {
+    margin-top: 25px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 35px;
+
+    background: linear-gradient(90deg,
+     #4e7766, 
+     #19ad88,
+     #61aa92,
+     #1b4740,
+     #0bbe89,
+     #049464,
+     #669e8c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px #000000;
+
+}
+
+#results {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    font-size: 20px;
+}
+/*sizing and style for the card itself! I was going to make it color based, but i'll save that
+for the project */
+.pokemon-card {
+    background-image:
+            linear-gradient(
+                rgba(154, 204, 180, 0.418),
+                rgba(68, 83, 76, 0.6)
+            ),
+            url("images/abstract-gradient-background-with-grain-texture.jpg");
+
+    background-color: #000000;
+    background-size: cover;
+    background-position: center;
+    border-radius: 18px;
+    padding: 25px;
+    width: 260px;
+    text-align: center;
+    box-shadow: 0 0 18px #1ef389f8;
+    backdrop-filter: blur(6px);
+}
+.pokemon-card p{
+    color: #ffffff;
+}
+/* sizing and style for the pokemon header 2 */
+.pokemon-card h2 {
+    margin-top: 0;
+    text-transform: capitalize;
+    font-size: 2rem;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+/* sizing and style for the pokemon image */
+.pokemon-card img {
+    width: 150px;
+    height: 150px;
+    image-rendering: pixelated;
+}
+
+.hidden{
+    display: none;
+}
+
+/* small loading animation for when the pokemon is being fetched. I MADE THIS BEFORE! WILL INCLUDE! */
+.loader-box {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto 12px;
+    position: relative;
+    animation: rotating 2s linear infinite;
+}
+
+.loader-box span {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border: 2px solid #77eb90;
+    border-radius: 8px;
+    mix-blend-mode: screen;
+    animation: de-rotating 4s linear infinite;
+}
+
+.loader-box span:nth-child(1) {
+    top: 10px;
+    left: 10px;
+    background-color: #a3d3c0;
+}
+
+.loader-box span:nth-child(2) {
+    top: -10px;
+    left: 10px;
+    background-color: #29c081;
+}
+
+.loader-box span:nth-child(3) {
+    top: 10px;
+    left: -10px;
+    background-color: #5a8373;
+}
+
+.loader-box span:nth-child(4) {
+    top: -10px;
+    left: -10px;
+    background-color: #2d9c72;
+}
+
+@keyframes rotating {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes de-rotating {
+    0%, 100% {
+        transform: rotate(0deg) scale(0.5);
+    }
+    50% {
+        transform: rotate(-180deg) scale(1.1);
+    }
+}
+.details-button {
+    margin-top: 12px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg,
+     #4e7766, 
+     #0bbe89,
+     #669e8c);
+    
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.details-button:hover {
+    background-color: #5ef0ae;
+    transform: scale(1.05);
+}
+
+.pokemon-details{
+    margin-top: 16px;
+}
+.pokemon-details p {
+    margin: 10px 0;
+}
+#status p {
+    margin: 8px 0 0;
+    font-size: 1.5rem;
+}
