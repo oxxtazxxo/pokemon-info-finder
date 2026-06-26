@@ -12,7 +12,7 @@
      <header class="site-header">
         <div class="title-area">
             <h1>Pokémon Info Finder</h1>
-            <p>Search for a Pokemon and explore its details</p>
+            <p>Search for a Pokémon and explore its details</p>
         </div>
 
         <div class="time-area">
@@ -26,20 +26,123 @@
             <!-- ===========================
                 LEFT COLUMN
                 CONTAINS:
-                - SEARCH PANNEL
+                - SEARCH PANEL
                 - SELECTED POKEMON
                 - POKEDEX ENTRY
                 =============================-->
             <div class="left-column">
-                <!-- SEARCH PANEL -->
-                 <section class="search-pannel">
+
+                <section class="search-panel">
                     <h2>Search</h2>
-                 </section>
+
+                    <form id="pokemon-form">
+                        <div class="search-controls">
+
+                            <!-- SEARCH BY NAME -->
+                            <div class="search-row">
+                                <input
+                                    type="text"
+                                    id="pokemon-input"
+                                    placeholder="Search by Pokémon name..."
+                                    autocomplete="off"
+                                >
+                                <button id="search-btn" type="submit">
+                                    Search
+                                </button>
+                            </div>
+
+                            <!-- BROWSE BY POKEMON TYPE -->
+                            <div class="type-search-row">
+                                <label for="type-select">
+                                    Browse by Type:
+                                </label>
+
+                                <select id="type-select">
+                                    <option value="">All Types</option>
+                                    <option value="bug">Bug</option>
+                                    <option value="dark">Dark</option>
+                                    <option value="dragon">Dragon</option>
+                                    <option value="electric">Electric</option>
+                                    <option value="fairy">Fairy</option>
+                                    <option value="fighting">Fighting</option>
+                                    <option value="fire">Fire</option>
+                                    <option value="flying">Flying</option>
+                                    <option value="ghost">Ghost</option>
+                                    <option value="grass">Grass</option>
+                                    <option value="ground">Ground</option>
+                                    <option value="ice">Ice</option>
+                                    <option value="normal">Normal</option>
+                                    <option value="poison">Poison</option>
+                                    <option value="psychic">Psychic</option>
+                                    <option value="rock">Rock</option>
+                                    <option value="steel">Steel</option>
+                                    <option value="water">Water</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <!-- LOADING / ERROR MESSAGE -->
+                        <section id="status"></section>
+                    </form>
+                </section>
+                <!-- SELECTED POKEMON PANEL-->
+                <section class="pokemon-display-panel">
+                    <h2>Selected Pokémon</h2>
+
+                    <!-- HOLDS THE POKEMON CARD AND ITS INFO -->
+                    <div class="pokemon-display-grid">
+                        <!-- LEFT SIDE -->
+                        <section class="pokemon-image-panel">
+                            <div id="pokemon-image-area">
+                                <p>Pokémon image will appear here.</p>
+                            </div>
+                        </section>
+
+                        <!-- RIGHT SIDE -->
+                        <section class="pokemon-details-panel">
+                            <div id="pokemon-details-area">
+                                <p>Pokémon details will appear here.</p>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+
+                <!-- POKEDEX ENTRY PANEL -->
+                <section class="pokedex-panel">
+                    <h2>Pokédex Entry</h2>
+                    <div id="pokedex-entry">
+                        <p>
+                            Pokédex information will appear here.
+                        </p>
+                    </div>
+                </section>
             </div>
+
+            <!-- ========================
+                RIGHT COLUMN
+                CONTAINS:
+                - RANDOM POKEMON! 
+                =========================-->
+                <div class="right-column">
+                    <section class="random-panel">
+                        <h2>Random Pokémon</h2>
+                        <div id="random-pokemon-area">
+                            <p>Random Pokémon will appear here.</p>
+                        </div>
+                        <div class="random-button-group">
+                            <button id="random-btn" type="button">
+                                Randomize
+                            </button>
+                            <button id="use-random-btn" type="button">
+                                Use this Pokémon
+                            </button>
+                        </div>
+                    </section>
+                </div>
          </div>
      </main>
 
-     
     <script src="app.js"></script>
 </body>
 </html>
