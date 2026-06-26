@@ -21,26 +21,24 @@
         </div>
      </header>
      <main>
-        <!-- Search panel: lets the user search for a Pokémon by name -->
-        <section class="search-panel">
-            <h2>Search</h2>
-
-        <form id="pokemon-form">
-            <label for="pokemon-input">Search for a Pokémon by name:</label>
-
-            <input
-                type="text"
-                id="pokemon-input"
-                placeholder="Enter a Pokémon name..."
-                autocomplete="off"
-            >
-
-            <button type="submit">Search</button>
-        </form>
-        <!-- Status messages appear here: loading text, errors, etc. -->
-        <section id="status"></section>
-     </section>
+        <!-- DASHBOARD LAYOUT -->
+         <div class="dashboard-layout">
+            <!-- ===========================
+                LEFT COLUMN
+                CONTAINS:
+                - SEARCH PANNEL
+                - SELECTED POKEMON
+                - POKEDEX ENTRY
+                =============================-->
+            <div class="left-column">
+                <!-- SEARCH PANEL -->
+                 <section class="search-pannel">
+                    <h2>Search</h2>
+                 </section>
+            </div>
+         </div>
      </main>
+
      
     <script src="app.js"></script>
 </body>
