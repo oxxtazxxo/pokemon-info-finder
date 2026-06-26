@@ -16,6 +16,11 @@ body {
         #20332c,
         #10231d
     );
+    background-image: url("images/backgrounds/background_base.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #f4fff9;
 }
 /* HEADER STYLING */
@@ -84,7 +89,7 @@ main {
 .pokemon-display-panel,
 .pokedex-panel,
 .random-panel {
-    background: rgba(34, 75, 62, 0.75);
+    background: rgba(20, 40, 32, 0.70);
     border: 2px solid #7daf98;
     border-radius: 18px;
     padding: 24px;
