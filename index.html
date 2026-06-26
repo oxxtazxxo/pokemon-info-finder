@@ -3,54 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon Dashboard</title>
+    <title>Pokemon Info Finder</title>
     <link rel="stylesheet" href="styles.css">
 
 </head>
 <body>
-    <!-- Header -->
-    <!--HOMEWORK. OLD HTML 
-    <header>
-        <h1>Pokemon Dashboard</h1>
-    </header>
-
-    <main>
-        <!-- Pokemon Search Section
-        <section class="pokemon-search">
-            <form id="pokemon-form">
-                <label for="pokemon-input">
-                    Search for a Pokemon:
-                </label>
-                <input
-                    type="text"
-                    id="pokemon-input"
-                    placeholder="Enter a Pokemon name..."
-                >
-                <button type="submit">
-                    Search
-                </button>   
-            </form>
-        </section>
-        
-        <section id="status">
-
-        </section>
-        <section id="results">
-
-        </section>
-    </main>
-        -->
     <!-- HEADER -->
      <header class="site-header">
-        <div class="title-wrap">
-            <h1>Pokemon Info Finder</h1>
-            <p class="tagline">Search for a Pokemon and explore its details</p>
+        <div class="title-area">
+            <h1>Pokémon Info Finder</h1>
+            <p>Search for a Pokemon and explore its details</p>
+        </div>
+
+        <div class="time-area">
+            <p>PokéTime://</p>
+            <p id="poke-time">--:-- --</p>
         </div>
      </header>
+     <main>
+        <!-- Search panel: lets the user search for a Pokémon by name -->
+        <section class="search-panel">
+            <h2>Search</h2>
 
-     <main class="dashboard-layout">
-        
+        <form id="pokemon-form">
+            <label for="pokemon-input">Search for a Pokémon by name:</label>
+
+            <input
+                type="text"
+                id="pokemon-input"
+                placeholder="Enter a Pokémon name..."
+                autocomplete="off"
+            >
+
+            <button type="submit">Search</button>
+        </form>
+        <!-- Status messages appear here: loading text, errors, etc. -->
+        <section id="status"></section>
+     </section>
      </main>
+     
     <script src="app.js"></script>
 </body>
 </html>
