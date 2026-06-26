@@ -89,7 +89,7 @@ main {
 .pokemon-display-panel,
 .pokedex-panel,
 .random-panel {
-    background: rgba(20, 40, 32, 0.70);
+    background: #142820b3;
     border: 2px solid #7daf98;
     border-radius: 18px;
     padding: 24px;
@@ -123,12 +123,65 @@ main {
     font-size: 1rem;
 }
 
-.search-row button {
+
+.pokemon-display-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.pokemon-image-panel,
+.pokemon-details-panel {
+    background: #10231d8c;
+    border: 2px solid #4effa7;
+    border-radius: 16px;
+    padding: 20px;
+    min-height: 320px;
+}
+
+/* BUTTONS */
+.search-row button,
+.random-button-group button {
     padding: 12px 20px;
     border: none;
     border-radius: 10px;
-    background: #43a77a;
+    background:#43a77a;
     color: white;
+    font-size: 0.95rem;
+    font-weight: 700;
     cursor: pointer;
-    font-weight: bold;
+
+    transition:
+        background 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.25s ease;
+}
+
+.random-button-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.random-button-group button {
+    flex: 1 1 100%;
+    min-width: 140px;
+}
+
+.random-button-group button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    background: #315849;
+    color: #d3d3d3;
+    box-shadow: none;
+}
+
+.random-button-group button:disabled:hover {
+    background: #315849;
+    transform: none;
+}
+.search-row button {
+    flex: 0 0 auto;
 }
