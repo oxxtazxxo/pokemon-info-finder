@@ -10,6 +10,9 @@ const pokedexEntryArea = document.querySelector("#pokedex-entry");
 const currentPokemonIcon = document.querySelector("#current-pokemon-icon");
 const currentPokemonName = document.querySelector("#current-pokemon-name");
 
+// TIME
+const pokeTime = document.querySelector("#poke-time");
+
 // randomizer
 const randomButton = document.querySelector("#random-btn");
 const useRandomButton = document.querySelector("#use-random-button");
@@ -48,7 +51,7 @@ randomButton.addEventListener("click", function() {
     getRandomPokemon();
 });
 //uses the generated random pokemon as the selected pokemon
-randomButton.addEventListener("click", function() {
+useRandomButton.addEventListener("click", function() {
     // makes sure a random pokemon is generated
     if(randomPokemonData) {
             getPokemon(randomPokemonData.name);
@@ -218,12 +221,14 @@ async function getRandomPokemon()
             data.name.charAt(0).toUpperCase() + data.name.slice(1);
         
         randomPokemonArea.innerHTML = `
-        <img
-            src="${data.sprites.front_default}"
-            alt="${formattedName}"
-            class="current-pokemon-sprite"
-        >
-            <h3>${formattedName}</h3>
+            <div class="random-pokemon-card">
+                <img
+                    src="${data.sprites.front_default}"
+                    alt="${formattedName}"
+                    class="current-pokemon-sprite"
+                >
+                    <h3>${formattedName}</h3>
+            </div>
         `;
         // enables the "use this pokemon" button
         useRandomButton.disabled = false;
@@ -240,3 +245,20 @@ async function getRandomPokemon()
         useRandomButton.disabled = true;
     }
 }
+
+// TIME FUNCTION [LIVE CLOCK POKEMON:OCLOCK]
+function updateTime() {
+    const now = new Date();
+
+    const time = now.toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit"
+    });
+
+    pokeTime.textContent = time;
+}
+
+// START THE LIVE CLOCK
+updateTime();
+setInterval(updateTime, 1000);

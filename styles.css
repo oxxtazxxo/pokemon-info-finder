@@ -186,6 +186,25 @@ main {
     padding: 20px;
     min-height: 320px;
 }
+#pokemon-image-area {
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.random-pokemon-card {
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
 
 /* BUTTONS */
 .search-row button,
@@ -267,4 +286,20 @@ main {
     outline: none;
     border-color: #4effa7;
     box-shadow: 0 0 12px #4effa740;
+}
+
+/* POKETIME */
+#poke-time {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.time-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    opacity: 0.75;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
 }
