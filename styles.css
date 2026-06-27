@@ -185,3 +185,39 @@ main {
 .search-row button {
     flex: 0 0 auto;
 }
+
+/* TYPE DROPDOWN */
+
+.type-search-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.type-search-row label {
+    font-weight: 600;
+}
+
+.type-search-row select {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #7daf98;
+    border-radius: 10px;
+    background: #142820cc;
+    color: #f4fff9;
+    font-size: .95rem;
+    cursor: pointer;
+    transition: 
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.type-search-row select:hover {
+    border-color: #4effa7;
+}
+
+.type-search-row select:focus {
+    outine: none;
+    border-color: #4effa7;
+    box-shadow: 0 0 12px #4effa740;
+}
