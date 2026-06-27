@@ -7,6 +7,16 @@ const statusMessage = document.querySelector('#status');
 const pokemonImageArea = document.querySelector("#pokemon-image-area");
 const pokemonDetailsArea = document.querySelector("#pokemon-details-area");
 const pokedexEntryArea = document.querySelector("#pokedex-entry"); 
+const currentPokemonIcon = document.querySelector("#current-pokemon-icon");
+const currentPokemonName = document.querySelector("#current-pokemon-name");
+
+// randomizer
+const randomButton = document.querySelector("#random-btn");
+const useRandomButton = document.querySelector("#use-random-button");
+const randomPokemonArea = document.querySelector("#random-pokemon-area");
+
+let randomPokemonData = null;
+
 
 // listen for the form being submitted
 form.addEventListener('submit', function(event){
@@ -33,6 +43,19 @@ form.addEventListener('submit', function(event){
     getPokemon(pokemonName);
 });
 
+// generates a random pokemon when the Randomize button is clicked
+randomButton.addEventListener("click", function() {
+    getRandomPokemon();
+});
+//uses the generated random pokemon as the selected pokemon
+randomButton.addEventListener("click", function() {
+    // makes sure a random pokemon is generated
+    if(randomPokemonData) {
+            getPokemon(randomPokemonData.name);
+    }
+
+});
+
 // async function to fetch the pokemon data from the API woo!
 async function getPokemon(pokemonName)
 {
@@ -53,6 +76,21 @@ async function getPokemon(pokemonName)
         }
 
         const data = await response.json();
+
+        const speciesResponse = await fetch(data.species.url);
+        const speciesData = await speciesResponse.json();
+
+        // POKEDEX ENTRY
+
+        const englishEntry = speciesData.flavor_text_entries.find(
+            entry => entry.language.name === "en"
+        );
+
+        const flavorText = englishEntry.flavor_text
+            .replace(/\f/g, " ")
+            .replace(/\n/g, " ");
+        
+            pokedexEntryArea.textContent = flavorText;
 
         // print the pokemon data in the console
         console.log(data)
@@ -88,8 +126,17 @@ async function getPokemon(pokemonName)
         //statusMessage.textContent = `${data.name} found! Woo!`;
 
         // Shows a status message while also capitalizing things properly
-        statusMessage.textContent = `${data.name.charAt(0).toUpperCase() + data.name.slice(1)} found! WOO!`;
-        
+        statusMessage.textContent = "";
+
+        const formattedName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+        currentPokemonName.textContent = formattedName;
+        currentPokemonIcon.innerHTML = `
+            <img
+                src="${data.sprites.front_default}"
+                alt="${formattedName}"
+                class= "current-pokemon-sprite"
+            >
+        `;
     
         pokemonImageArea.innerHTML = `
         <img
@@ -136,7 +183,7 @@ async function getPokemon(pokemonName)
         console.error(error);
 
         // shows a error message
-        statusMessage.textContent = "Pokemon not found. Please try again! Wompwomp :(";
+        statusMessage.textContent = "Pokémon not found. Please try again! Wompwomp :(";
 
         // clear old pokemon card if it fails
         pokemonImageArea.innerHTML = "";
@@ -144,4 +191,52 @@ async function getPokemon(pokemonName)
         pokedexEntryArea.innerHTML = "";
     }
     
+}
+
+// RANDOM POKEMON FUNCTION
+async function getRandomPokemon()
+{
+    try
+    {
+        // generates a random pokemon id
+        const randomId = Math.floor(Math.random() * 1025) + 1;
+
+        const response = await fetch(
+            `https://pokeapi.co/api/v2/pokemon/${randomId}`
+        );
+
+        if (!response.ok)
+        {
+            throw new Error("Random Pokémon not found.");
+        }
+
+        const data = await response.json();
+        // stores the random pokemon so it can be used later :3
+        randomPokemonData = data;
+
+        const formattedName =
+            data.name.charAt(0).toUpperCase() + data.name.slice(1);
+        
+        randomPokemonArea.innerHTML = `
+        <img
+            src="${data.sprites.front_default}"
+            alt="${formattedName}"
+            class="current-pokemon-sprite"
+        >
+            <h3>${formattedName}</h3>
+        `;
+        // enables the "use this pokemon" button
+        useRandomButton.disabled = false;
+    }
+
+    catch(error)
+    {
+        console.error(error);
+
+        randomPokemonArea.innerHTML = `
+        <p>Unable to load a random Pokemon.</p>
+        `;
+
+        useRandomButton.disabled = true;
+    }
 }

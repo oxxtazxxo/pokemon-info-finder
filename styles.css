@@ -56,6 +56,53 @@ body {
 .time-area {
     text-align: right;
 }
+.current-pokemon-box {
+    min-width: 250px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 10px 16px;
+    border: 2px solid #4effa7;
+    border-radius: 14px;
+    background: rgba(16, 35, 29, 0.35);
+}
+
+#current-pokemon-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.current-pokemon-sprite {
+    width: 72px;
+    height: 72px;
+    image-rendering: pixelated;
+}
+
+.current-pokemon-info p {
+    margin: 2px 0;
+}
+
+.current-label {
+    font-size: 0.85rem;
+    opacity: 0.85;
+}
+
+#current-pokemon-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.pokemon-sprite {
+    width: 220px;
+    height: 220px;
+    image-rendering: pixelated;
+}
 
 /* DASHBOARD LAYOUT */
 main {
