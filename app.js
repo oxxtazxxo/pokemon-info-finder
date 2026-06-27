@@ -2,7 +2,11 @@
 const form = document.querySelector('#pokemon-form');
 const input = document.querySelector('#pokemon-input');
 const statusMessage = document.querySelector('#status');
-const results = document.querySelector('#results');
+
+// selected pokemon display areas
+const pokemonImageArea = document.querySelector("#pokemon-image-area");
+const pokemonDetailsArea = document.querySelector("#pokemon-details-area");
+const pokedexEntryArea = document.querySelector("#pokedex-entry"); 
 
 // listen for the form being submitted
 form.addEventListener('submit', function(event){
@@ -86,43 +90,46 @@ async function getPokemon(pokemonName)
         // Shows a status message while also capitalizing things properly
         statusMessage.textContent = `${data.name.charAt(0).toUpperCase() + data.name.slice(1)} found! WOO!`;
         
-        
-        // this will display the name, type AND a picture of the pokemon!
-        results.innerHTML = `
-        <article class="pokemon-card">
-            <h2 style="color: ${nameColor};">
-                ${data.name.charAt(0).toUpperCase() + data.name.slice(1)}
-            </h2>
-            <p>
-                Type: ${data.types[0].type.name.charAt(0).toUpperCase() + data.types[0].type.name.slice(1)}
-            </p>
-            <img src="${data.sprites.front_default}" alt="${data.name}">
-
-
-            <button class="details-button">Show Details</button>
-
-            <div class="pokemon-details hidden">
-                <p>Height: ${data.height}</p>
-                <p>Weight: ${data.weight}</p>
-                <p>Abilities: ${data.abilities.map(ability => ability.ability.name).join(", ")}</p>
-            </div>
-       </article>
+    
+        pokemonImageArea.innerHTML = `
+        <img
+            src="${data.sprites.front_default}"
+            alt="${data.name}"
+            class="pokemon-sprite"
+            >
         `;
 
-        // makes the button work for details!
-        const detailsButton = document.querySelector(".details-button");
-        const pokemonDetails = document.querySelector(".pokemon-details");
+        pokemonDetailsArea.innerHTML = `
+        <h2 style="color:${nameColor};">
+            ${data.name.charAt(0).toUpperCase() + data.name.slice(1)}
+        </h2>
 
-        detailsButton.addEventListener("click", function() {
-            pokemonDetails.classList.toggle("hidden");
-            if (pokemonDetails.classList.contains("hidden"))
-            {
-                detailsButton.textContent = "Show Details";
-            } else
-            {
-                detailsButton.textContent = "Hide Details";
+        <p>
+            <strong>Type:</strong>
+            ${data.types
+                .map(type => type.type.name)
+                .join(", ")}
+        </p>
+
+        <p>
+            <strong>Height:</strong>
+            ${(data.height / 10).toFixed(1)} m
+        </p>
+
+        <p>
+            <strong>Weight:</strong>
+            ${(data.weight / 10).toFixed(1)} kg
+        </p>
+
+        <p>
+            <strong>Abilities:</strong>
+            ${data.abilities
+                .map(ability => ability.ability.name)
+                .join(", ")
             }
-        });
+        </p>
+        `;
+
     }
     catch (error)
     {
@@ -132,7 +139,9 @@ async function getPokemon(pokemonName)
         statusMessage.textContent = "Pokemon not found. Please try again! Wompwomp :(";
 
         // clear old pokemon card if it fails
-        results.innerHTML = "";
+        pokemonImageArea.innerHTML = "";
+        pokemonDetailsArea.innerHTML = "";
+        pokedexEntryArea.innerHTML = "";
     }
     
 }

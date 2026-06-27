@@ -217,7 +217,7 @@ main {
 }
 
 .type-search-row select:focus {
-    outine: none;
+    outline: none;
     border-color: #4effa7;
     box-shadow: 0 0 12px #4effa740;
 }
