@@ -96,8 +96,8 @@ async function getPokemon(pokemonName)
             pokedexEntryArea.textContent = flavorText;
 
         // print the pokemon data in the console
-        console.log(data)
-        console.log(data.sprites.front_default);
+        //console.log(data)
+        //console.log(data.sprites.front_default);
 
         // this makes it to where any TYPE of pokemon, the name will be colored to that specific type!
         const typeColors = 
