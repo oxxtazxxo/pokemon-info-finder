@@ -17,6 +17,10 @@ https://pokeapi.co/
 
 Pokémon type icons and sprites are provided through the API and accompanying project assets.
 
+## Assets
+
+All custom interface assets, including the background textures, type icons, loading animations, and UI graphics created specifically for this project, were designed and produced by me using Adobe Photoshop. Pokémon sprites and Pokémon data are provided by the PokéAPI.
+
 ## AI Assistance Disclosure
 AI was used as a learning and development assistant throughout this project. It was primarily used to:
 
