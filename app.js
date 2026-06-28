@@ -158,6 +158,7 @@ async function getPokemon(pokemonName, delay = 1400)
         };
 
         const mainType = data.types[0].type.name;
+            
         const nameColor = typeColors[mainType] || "#000000";
 
         // shows a status once the pokemon is found
@@ -177,10 +178,10 @@ async function getPokemon(pokemonName, delay = 1400)
         `;
     
         pokemonImageArea.innerHTML = `
-        <img
-            src="${data.sprites.front_default}"
-            alt="${data.name}"
-            class="pokemon-sprite"
+            <img
+                src="${data.sprites.front_default}"
+                alt="${data.name}"
+                class="pokemon-sprite"
             >
         `;
 

@@ -101,6 +101,7 @@ body {
 .pokemon-sprite {
     width: 250px;
     height: 250px;
+
     image-rendering: pixelated;
 
     transform: translateY(33px);
@@ -198,6 +199,8 @@ main {
     min-height: 230px;
 }
 #pokemon-image-area {
+    position: relative;
+
     min-height: 260px;
 
     display: flex;
