@@ -252,6 +252,46 @@ async function getPokemon(pokemonName, delay = 1400)
             </div>
 
         </div>
+        <!-- dynamically builds the pokemon's base stat bars -->
+        <div class="stats-section">
+            <h3>📊 Base Stats</h3>
+
+            ${
+                data.stats.map(stat => `
+                    <div class="stat-row">
+
+                        <span class="stat-name">
+                            ${
+                                stat.stat.name
+                                    .replace("special-attack", "SP. ATK")
+                                    .replace("special-defense", "SP. DEF")
+                                    .replace("attack", "ATK")
+                                    .replace("defense", "DEF")
+                                    .replace("speed", "SPD")
+                                    .replace("hp", "HP")
+                                    .replace(/^\w/, c => c.toUpperCase())
+                            }
+                        </span>
+
+                        <div class="stat-bar-container">
+                            <div
+                                class="stat-bar"
+                                style="
+                                    width:${Math.min(stat.base_stat, 150) / 150 * 100}%;
+                                    background:${getStatColor(stat.base_stat)};
+                                "
+                            ></div>
+                        </div>
+
+                        <span class="stat-value">
+                            ${stat.base_stat}
+                        </span>
+
+                    </div>
+                `).join("")
+            }
+
+        </div>
         `;
     }
     catch (error)
@@ -384,6 +424,23 @@ async function getRandomPokemon()
 
         useRandomButton.disabled = true;
     }
+}
+
+// RETURNS A COLOR BASED ON THE POKEMONS STAT VALUE
+function getStatColor(value) {
+    if (value >= 120) {
+        return "#ff5252";
+    }
+
+    if (value >= 90) {
+        return "#ff8e43";
+    }
+
+    if (value >= 70) {
+        return "#ffd93d";
+    }
+
+    return "#4cd964";
 }
 
 // TIME FUNCTION [LIVE CLOCK POKEMON:OCLOCK]
