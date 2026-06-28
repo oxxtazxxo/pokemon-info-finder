@@ -21,8 +21,6 @@ Pokémon type icons and sprites are provided through the API and accompanying pr
 AI was used as a learning and development assistant throughout this project. It was primarily used to:
 
 Explain JavaScript concepts
-Debug HTML, CSS, and JavaScript issues
-Suggest design improvements
-Explain API integration and DOM manipulation
+Debug HTML, CSS, and JavaScript issues. Suggest design improvements. Explain API integration and DOM manipulation
 
 All code was reviewed, tested, modified, and understood before being included in the final project.
