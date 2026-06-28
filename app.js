@@ -16,6 +16,9 @@ const pokeTime = document.querySelector("#poke-time");
 // BROWSE BY TYPE
 const typeSelect = document.querySelector("#type-select");
 
+// STATS AREA (moving around)
+const statsArea = document.querySelector("#stats-area");
+
 // randomizer
 const randomButton = document.querySelector("#random-btn");
 const useRandomButton = document.querySelector("#use-random-button");
@@ -252,48 +255,50 @@ async function getPokemon(pokemonName, delay = 1400)
             </div>
 
         </div>
-        <!-- dynamically builds the pokemon's base stat bars -->
-        <div class="stats-section">
-            <h3>📊 Base Stats</h3>
+        
+        `;
+        // dynamically builds the pokemon's base stat bars in the stats panel
+        statsArea.innerHTML = `
+            <div class="stats-section">
+                ${
+                    data.stats.map(stat => `
+                        <div class="stat-row">
 
-            ${
-                data.stats.map(stat => `
-                    <div class="stat-row">
+                            <span class="stat-name">
+                                ${
+                                    stat.stat.name
+                                        .replace("special-attack", "SP. ATK")
+                                        .replace("special-defense", "SP. DEF")
+                                        .replace("attack", "ATK")
+                                        .replace("defense", "DEF")
+                                        .replace("speed", "SPD")
+                                        .replace("hp", "HP")
+                                        .replace(/^\w/, c => c.toUpperCase())
+                                }
+                            </span>
 
-                        <span class="stat-name">
-                            ${
-                                stat.stat.name
-                                    .replace("special-attack", "SP. ATK")
-                                    .replace("special-defense", "SP. DEF")
-                                    .replace("attack", "ATK")
-                                    .replace("defense", "DEF")
-                                    .replace("speed", "SPD")
-                                    .replace("hp", "HP")
-                                    .replace(/^\w/, c => c.toUpperCase())
-                            }
-                        </span>
+                            <div class="stat-bar-container">
+                                <div
+                                    class="stat-bar"
+                                    style="
+                                        width:${Math.min(stat.base_stat, 150) / 150 * 100}%;
+                                        background:${getStatColor(stat.base_stat)};
+                                    "
+                                ></div>
+                            </div>
 
-                        <div class="stat-bar-container">
-                            <div
-                                class="stat-bar"
-                                style="
-                                    width:${Math.min(stat.base_stat, 150) / 150 * 100}%;
-                                    background:${getStatColor(stat.base_stat)};
-                                "
-                            ></div>
+                            <span class="stat-value">
+                                ${stat.base_stat}
+                            </span>
+
                         </div>
-
-                        <span class="stat-value">
-                            ${stat.base_stat}
-                        </span>
-
-                    </div>
-                `).join("")
-            }
-
-        </div>
+                    `).join("")
+                }
+            </div>
         `;
     }
+
+    
     catch (error)
     {
         console.error(error);

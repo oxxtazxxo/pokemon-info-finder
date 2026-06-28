@@ -99,8 +99,8 @@ body {
 }
 
 .pokemon-sprite {
-    width: 330px;
-    height: 330px;
+    width: 280px;
+    height: 280px;
     image-rendering: pixelated;
 
     transition: transform .25s ease;
@@ -141,7 +141,8 @@ main {
 .search-panel,
 .pokemon-display-panel,
 .pokedex-panel,
-.random-panel {
+.random-panel,
+.stats-panel {
     background: #142820b3;
     border: 2px solid #7daf98;
     border-radius: 18px;
@@ -153,7 +154,8 @@ main {
 .search-panel h2,
 .pokemon-display-panel h2,
 .pokedex-panel h2,
-.random-panel h2 {
+.random-panel h2,
+.stats-panel h2 {
     margin-top: 0;
 }
 
@@ -182,7 +184,7 @@ main {
 .pokemon-display-grid {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
-    gap: 24px;
+    gap: 18px;
     align-items: stretch;
 }
 
@@ -191,18 +193,18 @@ main {
     background: #10231d8c;
     border: 2px solid #4effa7;
     border-radius: 16px;
-    padding: 20px;
-    min-height: 320px;
+    padding: 18px;
+    min-height: 260px;
 }
 #pokemon-image-area {
-    min-height: 260px;
+    min-height: 230px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: 12px;
     text-align: center;
-    padding-top: 120px;
+    padding-top: 0;
 }
 
 .random-pokemon-card {
