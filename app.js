@@ -29,19 +29,16 @@ form.addEventListener('submit', function(event){
     const pokemonName = input.value.trim().toLowerCase();
     // makes sure the user entered a pokemon name. its checking
     if (pokemonName === ""){
-        statusMessage.textContent = "Please enter a Pokemon name.";
+        statusMessage.textContent = "Please enter a Pokémon name.";
         return;
     }
 
-    statusMessage.innerHTML = `
-    <div class="loader-box">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <p>Searching for: ${pokemonName}...</p>
-    `;
+    statusMessage.textContent = "";
+    showLoader(pokemonImageArea, "Loading Pokémon...");
+    showLoader(pokemonDetailsArea, "Gathering details...");
+
+
+    //<p>Searching for: ${pokemonName}...</p>
     // call the function that fetches pokemon data from the API
     getPokemon(pokemonName);
 });
@@ -54,13 +51,31 @@ randomButton.addEventListener("click", function() {
 useRandomButton.addEventListener("click", function() {
     // makes sure a random pokemon is generated
     if(randomPokemonData) {
-            getPokemon(randomPokemonData.name);
+            showLoader(pokemonImageArea, "Loading Pokemon...");
+            showLoader(pokemonDetailsArea, "Gathering details...");
+
+            getPokemon(randomPokemonData.name, 800);
     }
 
 });
 
+// shows loading dots inside a selected area
+function showLoader(area, message) {
+    area.innerHTML = `
+        <div class="loader-box">
+            <div class="loader-badges">
+                <img src="images/badges/loader/grass.png" alt="Grass badge">
+                <img src="images/badges/loader/fire.png" alt="Fire badge">
+                <img src="images/badges/loader/water.png" alt="Water badge">
+                <img src="images/badges/loader/electric.png" alt="Electric badge">
+            </div>
+            <p>${message}</p>
+        </div>
+    `;
+}
+
 // async function to fetch the pokemon data from the API woo!
-async function getPokemon(pokemonName)
+async function getPokemon(pokemonName, delay = 1400)
 {
     try{
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
@@ -69,8 +84,8 @@ async function getPokemon(pokemonName)
         // this was just a test but 1200 was too long
         // await new Promise(resolve => setTimeout(resolve, 1200));
 
-        // NEW: keeps the loader on the screen for 700ms instead.
-        await new Promise(resolve => setTimeout(resolve, 700));
+        // NEW: keeps the loader on the screen for 1200ms instead.
+        await new Promise(resolve => setTimeout(resolve, delay));
 
         // if the pokemon doesnt exist, it'll force an error
         if(!response.ok)
@@ -201,6 +216,12 @@ async function getRandomPokemon()
 {
     try
     {
+
+        showLoader(randomPokemonArea, "Randomizing...");
+        useRandomButton.disabled = true;
+
+        await new Promise(resolve => setTimeout(resolve, 600));
+
         // generates a random pokemon id
         const randomId = Math.floor(Math.random() * 1025) + 1;
 
