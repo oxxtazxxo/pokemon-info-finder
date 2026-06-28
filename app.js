@@ -13,11 +13,15 @@ const currentPokemonName = document.querySelector("#current-pokemon-name");
 // TIME
 const pokeTime = document.querySelector("#poke-time");
 
+// BROWSE BY TYPE
+const typeSelect = document.querySelector("#type-select");
+
 // randomizer
 const randomButton = document.querySelector("#random-btn");
 const useRandomButton = document.querySelector("#use-random-button");
 const randomPokemonArea = document.querySelector("#random-pokemon-area");
 
+// stores the currently generated random pokemon
 let randomPokemonData = null;
 
 
@@ -58,8 +62,20 @@ useRandomButton.addEventListener("click", function() {
     }
 
 });
+// loads a random pokemon from the selected type
+typeSelect.addEventListener("change", function() {
+    // gets the selected pokemon type
+    const selectedType = typeSelect.value;
 
-// shows loading dots inside a selected area
+    if (!selectedType) {
+        statusMessage.textContent = "Choose a type to browse.";
+        return;
+    }
+
+    getPokemonByType(selectedType);
+});
+
+// displays the animated loading badges inside a selected area
 function showLoader(area, message) {
     area.innerHTML = `
         <div class="loader-box">
@@ -114,7 +130,7 @@ async function getPokemon(pokemonName, delay = 1400)
         //console.log(data)
         //console.log(data.sprites.front_default);
 
-        // this makes it to where any TYPE of pokemon, the name will be colored to that specific type!
+        // colors the pokemon name based on its primary type
         const typeColors = 
         {
             electric: "#f7d02c",
@@ -209,6 +225,67 @@ async function getPokemon(pokemonName, delay = 1400)
         pokedexEntryArea.innerHTML = "";
     }
     
+}
+
+// BROWSE BY POKEMON TYPE DROPDOWN
+async function getPokemonByType(typeName) {
+    try {
+        // clears any previous status message
+        statusMessage.textContent = "";
+
+        // shows a loading animation while browsing pokemon types
+        showLoader(randomPokemonArea, "Exploring habitats...");
+        useRandomButton.disabled = true;
+
+        await new Promise(resolve => setTimeout(resolve, 800));
+        // fetches all pokemon that belong to the selected type
+        const response = await fetch(`https://pokeapi.co/api/v2/type/${typeName}`);
+
+        if (!response.ok) {
+            throw new Error("Type not found.");
+        }
+
+        const data = await response.json();
+
+        const pokemonList = data.pokemon;
+
+        // randomly selects one pokemon from that type
+        const randomIndex = Math.floor(Math.random() * pokemonList.length);
+        const randomPokemonName = pokemonList[randomIndex].pokemon.name;
+
+        const pokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemonName}`);
+        const pokemonData = await pokemonResponse.json();
+
+        // saves the pokemon so "Use This Pokémon" works correctly
+        randomPokemonData = pokemonData;
+
+        const formattedName =
+            pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1);
+
+        randomPokemonArea.innerHTML = `
+        <div class="random-pokemon-card">
+            <img
+                src="${pokemonData.sprites.front_default}"
+                alt="${formattedName}"
+                class="current-pokemon-sprite"
+            >
+            <h3>${formattedName}</h3>
+        </div>
+    `;
+
+    useRandomButton.disabled = false;
+
+    // loads the selected pokemon into the dashboard
+    await getPokemon(randomPokemonName, 800);
+
+    // updates the search bar with the chosen pokemon
+    input.value = randomPokemonName;
+
+    }
+    catch (error) {
+        console.error(error);
+        statusMessage.textContent = "Could not browse this type. Please try again.";
+    }
 }
 
 // RANDOM POKEMON FUNCTION
