@@ -111,6 +111,7 @@ async function getPokemon(pokemonName, delay = 1400)
 
         const data = await response.json();
 
+        // fetches additional species data for the pokedex entry
         const speciesResponse = await fetch(data.species.url);
         const speciesData = await speciesResponse.json();
 
@@ -185,12 +186,25 @@ async function getPokemon(pokemonName, delay = 1400)
             ${data.name.charAt(0).toUpperCase() + data.name.slice(1)}
         </h2>
 
-        <p>
+        <div class="type-section">
             <strong>Type:</strong>
-            ${data.types
-                .map(type => type.type.name)
-                .join(", ")}
-        </p>
+
+            <div class="type-badges">
+                ${
+                    data.types.map(type => `
+                        <div class="type-badge">
+                            <img
+                                src="images/badges/types/${type.type.name}.png"
+                                alt="${type.type.name}"
+                            >
+                            <span>
+                                ${type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
+                            </span>
+                        </div>
+                    `).join("")
+                }
+            </div>
+        </div>
 
         <p>
             <strong>Height:</strong>
