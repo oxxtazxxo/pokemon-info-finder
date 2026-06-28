@@ -17,7 +17,7 @@ https://pokeapi.co/
 
 Pokémon type icons and sprites are provided through the API and accompanying project assets.
 
-##AI Assistance Disclosure
+## AI Assistance Disclosure
 AI was used as a learning and development assistant throughout this project. It was primarily used to:
 
 Explain JavaScript concepts
