@@ -102,6 +102,12 @@ body {
     width: 220px;
     height: 220px;
     image-rendering: pixelated;
+
+    transition: transform .25s ease;
+}
+
+.pokemon-sprite:hover {
+    transform: scale(1.08);
 }
 
 /* DASHBOARD LAYOUT */
@@ -355,4 +361,53 @@ main {
         transform: translateY(-16px);
         opacity: 1;
     }
+}
+
+/* TYPE BADGES */
+
+.type-section {
+    margin: 18px 0;
+}
+
+.type-section strong {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.type-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.type-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 12px;
+
+    background: #ffffff0f;
+    border: 1px solid #ffffff1f;
+    border-radius: 999px;
+
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+}
+
+.type-badge:hover {
+    transform: translateY(-2px);
+    background: #ffffff1f;
+    box-shadow: 0 0 12px #4effa740;
+}
+.type-badge img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.type-badge span {
+    font-weight: 600;
+    font-size: 0.95rem;
 }
