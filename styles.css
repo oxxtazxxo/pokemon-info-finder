@@ -411,3 +411,42 @@ main {
     font-weight: 600;
     font-size: 0.95rem;
 }
+
+/* ABILITY CHIPS */
+
+.ability-section {
+    margin-top: 20px;
+}
+
+.ability-section strong {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.ability-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ability-chip {
+    padding: 8px 14px;
+
+    background: #ffffff0f;
+    border: 1px solid #ffffff1f;
+    border-radius: 999px;
+
+    font-size: .9rem;
+    font-weight: 600;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+
+.ability-chip:hover {
+    transform: translateY(-2px);
+    background: #ffffff1f;
+    box-shadow: 0 0 10px #4effa740;
+}

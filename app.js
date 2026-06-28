@@ -216,15 +216,27 @@ async function getPokemon(pokemonName, delay = 1400)
             ${(data.weight / 10).toFixed(1)} kg
         </p>
 
-        <p>
+        <div class="ability-section">
             <strong>Abilities:</strong>
-            ${data.abilities
-                .map(ability => ability.ability.name)
-                .join(", ")
-            }
-        </p>
-        `;
 
+            <div class="ability-chips">
+                ${
+                    data.abilities.map(ability => `
+                        <div class="ability-chip">
+                            ${
+                                ability.ability.name
+                                    .split("-")
+                                    .map(word =>
+                                        word.charAt(0).toUpperCase() + word.slice(1)
+                                    )
+                                    .join(" ")
+                            }
+                        </div>
+                    `).join("")
+                    }
+                </div>
+            </div>
+        `;
     }
     catch (error)
     {
