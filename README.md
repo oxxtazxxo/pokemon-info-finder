@@ -10,7 +10,7 @@ Launch index.html in a web browser.
 Alternatively, use the Live Server extension in Visual Studio Code for the best experience.
 Enter a Pokémon name, browse by type, or use the Randomize button.
 
-##Data Source Credits
+## Data Source Credits
 This project uses the free PokéAPI for Pokémon data.
 
 https://pokeapi.co/
