@@ -186,56 +186,72 @@ async function getPokemon(pokemonName, delay = 1400)
             ${data.name.charAt(0).toUpperCase() + data.name.slice(1)}
         </h2>
 
-        <div class="type-section">
-            <strong>Type:</strong>
+        <div class="details-list">
 
-            <div class="type-badges">
-                ${
-                    data.types.map(type => `
-                        <div class="type-badge">
-                            <img
-                                src="images/badges/types/${type.type.name}.png"
-                                alt="${type.type.name}"
-                            >
-                            <span>
-                                ${type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
-                            </span>
-                        </div>
-                    `).join("")
-                }
+            <div class="detail-row">
+                <div class="detail-label">
+                    <span class="detail-icon">📏</span>
+                    <strong>Height</strong>
+                </div>
+                <span>${(data.height / 10).toFixed(1)} m</span>
             </div>
-        </div>
 
-        <p>
-            <strong>Height:</strong>
-            ${(data.height / 10).toFixed(1)} m
-        </p>
+            <div class="detail-row">
+                <div class="detail-label">
+                    <span class="detail-icon">⚖️</span>
+                    <strong>Weight</strong>
+                </div>
+                <span>${(data.weight / 10).toFixed(1)} kg</span>
+            </div>
 
-        <p>
-            <strong>Weight:</strong>
-            ${(data.weight / 10).toFixed(1)} kg
-        </p>
+            <div class="detail-row detail-row-stacked">
+                <div class="detail-label">
+                    <span class="detail-icon">🏷️</span>
+                    <strong>Types</strong>
+                </div>
 
-        <div class="ability-section">
-            <strong>Abilities:</strong>
-
-            <div class="ability-chips">
-                ${
-                    data.abilities.map(ability => `
-                        <div class="ability-chip">
-                            ${
-                                ability.ability.name
-                                    .split("-")
-                                    .map(word =>
-                                        word.charAt(0).toUpperCase() + word.slice(1)
-                                    )
-                                    .join(" ")
-                            }
-                        </div>
-                    `).join("")
+                <div class="type-badges">
+                    ${
+                        data.types.map(type => `
+                            <div class="type-badge">
+                                <img
+                                    src="images/badges/types/${type.type.name}.png"
+                                    alt="${type.type.name}"
+                                >
+                                <span>
+                                    ${type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
+                                </span>
+                            </div>
+                        `).join("")
                     }
                 </div>
             </div>
+
+            <div class="detail-row detail-row-stacked">
+                <div class="detail-label">
+                    <span class="detail-icon">⭐</span>
+                    <strong>Abilities</strong>
+                </div>
+
+                <div class="ability-chips">
+                    ${
+                        data.abilities.map(ability => `
+                            <div class="ability-chip">
+                                ${
+                                    ability.ability.name
+                                        .split("-")
+                                        .map(word =>
+                                            word.charAt(0).toUpperCase() + word.slice(1)
+                                        )
+                                        .join(" ")
+                                }
+                            </div>
+                        `).join("")
+                    }
+                </div>
+            </div>
+
+        </div>
         `;
     }
     catch (error)

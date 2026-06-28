@@ -146,6 +146,8 @@ main {
     border: 2px solid #7daf98;
     border-radius: 18px;
     padding: 24px;
+
+    line-height: 1.6;
 }
 
 .search-panel h2,
@@ -365,14 +367,7 @@ main {
 
 /* TYPE BADGES */
 
-.type-section {
-    margin: 18px 0;
-}
 
-.type-section strong {
-    display: block;
-    margin-bottom: 10px;
-}
 
 .type-badges {
     display: flex;
@@ -414,14 +409,7 @@ main {
 
 /* ABILITY CHIPS */
 
-.ability-section {
-    margin-top: 20px;
-}
 
-.ability-section strong {
-    display: block;
-    margin-bottom: 10px;
-}
 
 .ability-chips {
     display: flex;
@@ -449,4 +437,41 @@ main {
     transform: translateY(-2px);
     background: #ffffff1f;
     box-shadow: 0 0 10px #4effa740;
+}
+
+/* DETAILS LIST */
+
+.details-list {
+    margin-top: 14px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+
+    padding: 13px 0;
+    border-bottom: 1px solid #4effa733;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-icon {
+    width: 24px;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.detail-row-stacked {
+    align-items: flex-start;
+    flex-direction: column;
 }
